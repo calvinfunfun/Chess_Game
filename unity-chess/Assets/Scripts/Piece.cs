@@ -12,9 +12,12 @@ public struct Piece
         Knight,
         Queen,
         King,
+        Empty,
     }
 
-    private Vector3Int Position;
+    public Vector3Int position;
     public Type type;
-
+    public bool isWhite;
+    public bool isEmpty;
+    public char rank;
 }
