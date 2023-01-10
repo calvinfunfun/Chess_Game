@@ -16,8 +16,4 @@ public class Game : MonoBehaviour
         
     }
 
-    void CreateBoard()
-    {
-        
-    }
 }
