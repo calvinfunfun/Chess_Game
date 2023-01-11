@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Board : MonoBehaviour
 {
+    //Piece Type
     public Tile W_Knight;
     public Tile W_Bishop;
     public Tile W_Queen;
@@ -18,11 +19,11 @@ public class Board : MonoBehaviour
     public Tile B_Rook;
     public Tile B_Pawn;
     public Tile Empty;
-    public Tilemap tileMap { get; private set; }
+    public Tilemap tilemap { get; private set; }
     
     //Sets the TileMap Object "Board" to the variable tilemap
     private void getMap(){
-        tileMap = GetComponent<Tilemap>();
+        tilemap = GetComponent<Tilemap>();
     }
  
     //Creates the board
@@ -31,82 +32,73 @@ public class Board : MonoBehaviour
         for (int x = 0; x < 8; x++)
         {
 
-            tileMap.SetTile(new Vector3Int(x, 1, -1), B_Pawn);
-            tileMap.SetTile(new Vector3Int(x, 6, -1), W_Pawn);
+            tilemap.SetTile(new Vector3Int(x, 1, -1), B_Pawn);
+            tilemap.SetTile(new Vector3Int(x, 6, -1), W_Pawn);
 
-            for (int y = 0; y < 8; y++)
-            {
-
-                if (y == 0 && (x == 0 || x == 7))
+            for (int y = 0; y < 8; y++) {
+                if (x == 0)
                 {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), B_Rook);
-                }
-                else if (y == 7 && (x == 0 || x == 7))
+                    switch (y) 
+                    {
+                        case 0 or 7:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Rook);
+                            break;
+                        case 1 or 6:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Knight);
+                            break;
+                        case 2 or 5:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Bishop);
+                            break;
+                        case 3:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Queen);
+                            break;
+                        case 4:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_King);
+                            break;
+                    }
+                }else if (x == 8)
                 {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), W_Rook);
+                    switch (y)
+                    {
+                        case 0 or 7:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Rook);
+                            break;
+                        case 1 or 6:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Knight);
+                            break;
+                        case 2 or 5:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Bishop);
+                            break;
+                        case 3:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Queen);
+                            break;
+                        case 4:
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_King);
+                            break;
+                    }
                 }
-                else if (y == 0 && (x == 1 || x == 6))
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), B_Knight);
-                }
-                else if (y == 7 && (x == 1 || x == 6))
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), W_Knight);
-                }
-                else if (y == 0 && (x == 2 || x == 5))
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), B_Bishop);
-                }
-                else if (y == 7 && (x == 2 || x == 5))
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), W_Bishop);
-                }
-                else if (y == 7 && x == 3)
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), B_Queen);
-                }
-                else if (y == 7 && x == 4)
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), B_King);
-                }
-                else if (y == 0 && x == 3)
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), W_Queen);
-                }
-                else if(y == 0 && x == 4)
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), W_King);
-                }
-                else
-                {
-                    tileMap.SetTile(new Vector3Int(x, y, -1), Empty);
-
-                }
-                
-                Piece piece = state[x, y];
-                tileMap.SetTile(piece.position, getPiece(piece));
             }
         }
     }
 
     private Tile getPiece(Piece piece)
     {
-        if (piece.isEmpty)
+        if (piece.IsEmpty)
         {
             return Empty;
-        }else if (piece.isWhite)
+        }else if (piece.IsWhite)
         {
-            return getWhitePiece(piece);
+            return GetWhitePiece(piece);
         }
         else
         {
-            return getBlackPiece(piece);
+            return GetBlackPiece(piece);
         }
     }
 
-    private Tile getWhitePiece(Piece piece)
+    private Tile GetWhitePiece(Piece piece)
     {
-        switch (piece.rank)
+        switch (piece.Rank)
         {
             case 'P': 
                 return W_Pawn;
@@ -125,9 +117,9 @@ public class Board : MonoBehaviour
         }
     }
     
-    private Tile getBlackPiece(Piece piece)
+    private Tile GetBlackPiece(Piece piece)
     {
-        switch (piece.rank)
+        switch (piece.Rank)
         {
             case 'P': 
                 return B_Pawn;

@@ -15,9 +15,10 @@ public struct Piece
         Empty,
     }
 
-    public Vector3Int position;
+    public Vector3Int Position;
+    public bool HasMoved;
     public Type type;
-    public bool isWhite;
-    public bool isEmpty;
-    public char rank;
+    public bool IsWhite;
+    public bool IsEmpty;
+    public char Rank;
 }
