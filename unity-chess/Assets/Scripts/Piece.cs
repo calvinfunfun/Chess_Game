@@ -20,5 +20,4 @@ public struct Piece
     public Type type;
     public bool IsWhite;
     public bool IsEmpty;
-    public char Rank;
 }

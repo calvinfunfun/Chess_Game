@@ -4,17 +4,82 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+
+    private Board _board;
+    private Piece[,] _state;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        _board.NewGame(_state);
     }
 
+    private void Awake()
+    {
+        _board = GetComponentInChildren<Board>();
+    }
     // Update is called once per frame
     void Update()
     {
         
     }
+    
+    //Sets the properties of each piece(type, position, isWhite, hasMoved)
+    private void GeneratePieces()
+    {
+        for (int x = 0; x < 8; x++)
+        {
+
+            //tilemap.SetTile(new Vector3Int(x, 6, -1), B_Pawn);
+            //tilemap.SetTile(new Vector3Int(x, 1, -1), W_Pawn);
+
+            for (int y = 0; y < 8; y++) {
+                if (y == 7)
+                {
+                    switch (x) 
+                    {
+                        case 0 or 7:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), B_Rook);
+                            break;
+                        case 1 or 6:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), B_Knight);
+                            break;
+                        case 2 or 5:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), B_Bishop);
+                            break;
+                        case 3:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), B_Queen);
+                            break;
+                        case 4:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), B_King);
+                            break;
+                    }
+                }else if (y == 0)
+                {
+                    switch (x)
+                    {
+                        case 0 or 7:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), W_Rook);
+                            break;
+                        case 1 or 6:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), W_Knight);
+                            break;
+                        case 2 or 5:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), W_Bishop);
+                            break;
+                        case 3:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), W_Queen);
+                            break;
+                        case 4:
+                            //tilemap.SetTile(new Vector3Int(x, y, -1), W_King);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    
+    //Gets all the possible moves of each piece when clicked
     public List<Vector3Int> GetPieceMoves(Piece piece)
     {
         List<Vector3Int> possibleMoves = new List<Vector3Int>();
@@ -91,13 +156,16 @@ public class Game : MonoBehaviour
 
         return possibleMoves;
     }
-
+    
+    //Checks whether a piece can capture an opponent's piece at that position
+    //for opponent pieces
     private bool isCapturable(Vector3Int pos)
     {
         return false;
     }
 
     //My attempt at creating an isOccupied method
+    //for the same colored pieces
     private bool isOccupied(Vector3Int pos)
     {
         return false;
@@ -108,5 +176,31 @@ public class Game : MonoBehaviour
     {
         return false;
     }
+    
+    public Piece.Type PawnPromotion(Piece piece)
+    {
+        return Piece.Type.Empty;
+    }
 
+    public bool CanCastleKingSide()
+    {
+        return false;
+    }
+
+    public bool CanCastleQueenSide()
+    {
+        return false;
+    }
+
+    public bool IsInCheck(/* needs parameters */)
+    {
+        return false;
+    }
+    
+    public bool CanEnPassant(/* needs parameters */)
+    {
+        return false;
+    }
+
+    
 }

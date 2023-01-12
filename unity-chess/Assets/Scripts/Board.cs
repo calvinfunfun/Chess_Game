@@ -19,7 +19,7 @@ public class Board : MonoBehaviour
     public Tile B_Rook;
     public Tile B_Pawn;
     public Tile Empty;
-    public Tilemap tilemap { get; private set; }
+    public Tilemap tilemap;
     
     //Sets the TileMap Object "Board" to the variable tilemap
     private void getMap(){
@@ -32,13 +32,13 @@ public class Board : MonoBehaviour
         for (int x = 0; x < 8; x++)
         {
 
-            tilemap.SetTile(new Vector3Int(x, 1, -1), B_Pawn);
-            tilemap.SetTile(new Vector3Int(x, 6, -1), W_Pawn);
+            tilemap.SetTile(new Vector3Int(x, 6, -1), B_Pawn);
+            tilemap.SetTile(new Vector3Int(x, 1, -1), W_Pawn);
 
             for (int y = 0; y < 8; y++) {
-                if (x == 0)
+                if (y == 7)
                 {
-                    switch (y) 
+                    switch (x) 
                     {
                         case 0 or 7:
                             tilemap.SetTile(new Vector3Int(x, y, -1), B_Rook);
@@ -56,9 +56,9 @@ public class Board : MonoBehaviour
                             tilemap.SetTile(new Vector3Int(x, y, -1), B_King);
                             break;
                     }
-                }else if (x == 8)
+                }else if (y == 0)
                 {
-                    switch (y)
+                    switch (x)
                     {
                         case 0 or 7:
                             tilemap.SetTile(new Vector3Int(x, y, -1), W_Rook);
@@ -78,63 +78,6 @@ public class Board : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    private Tile getPiece(Piece piece)
-    {
-        if (piece.IsEmpty)
-        {
-            return Empty;
-        }else if (piece.IsWhite)
-        {
-            return GetWhitePiece(piece);
-        }
-        else
-        {
-            return GetBlackPiece(piece);
-        }
-    }
-
-    private Tile GetWhitePiece(Piece piece)
-    {
-        switch (piece.Rank)
-        {
-            case 'P': 
-                return W_Pawn;
-            case 'N': 
-                return W_Knight;
-            case 'B': 
-                return W_Bishop;
-            case 'R': 
-                return W_Rook;
-            case 'Q': 
-                return W_Queen;
-            case 'K':
-                return W_King;
-            default: 
-                return Empty;
-        }
-    }
-    
-    private Tile GetBlackPiece(Piece piece)
-    {
-        switch (piece.Rank)
-        {
-            case 'P': 
-                return B_Pawn;
-            case 'N': 
-                return B_Knight;
-            case 'B': 
-                return B_Bishop;
-            case 'R': 
-                return B_Rook;
-            case 'Q': 
-                return B_Queen;
-            case 'K':
-                return B_King;
-            default: 
-                return Empty;
         }
     }
 }
