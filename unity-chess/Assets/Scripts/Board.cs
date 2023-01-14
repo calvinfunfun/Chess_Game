@@ -22,20 +22,20 @@ public class Board : MonoBehaviour
     public Tilemap tilemap;
     
     //Sets the TileMap Object "Board" to the variable tilemap
-    private void getMap(){
+    private void GetMap(){
         tilemap = GetComponent<Tilemap>();
     }
  
     //Creates the board
-    public void NewGame(Piece[ , ] state)
+    public void NewGame()
     {
-        for (int x = 0; x < 8; x++)
+        for (var x = 0; x < 8; x++)
         {
 
             tilemap.SetTile(new Vector3Int(x, 6, -1), B_Pawn);
             tilemap.SetTile(new Vector3Int(x, 1, -1), W_Pawn);
 
-            for (int y = 0; y < 8; y++) {
+            for (var y = 0; y < 8; y++) {
                 if (y == 7)
                 {
                     switch (x) 

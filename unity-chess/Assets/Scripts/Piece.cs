@@ -16,8 +16,10 @@ public struct Piece
     }
 
     public Vector3Int Position;
+    public List<Vector3Int> PossibleMoves;
     public bool HasMoved;
     public Type type;
     public bool IsWhite;
     public bool IsEmpty;
+    
 }
