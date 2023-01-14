@@ -507,8 +507,20 @@ public class Game : MonoBehaviour
         return false;
     }
 
-    public bool IsInCheck(/* needs parameters */)
+    public bool IsInCheck(Piece piece, Vector3Int position)
     {
+        /* Parameters: Piece (for isWhite), Vector3Int position
+         * Check each direction from where they are
+         * for opposite-colored bishops, rooks, queens, etc.
+         * if none, return false
+         */
+
+        for (int x = 0; x + position.x < 8 /* OR statement finding a piece obstructing the line */; x++)
+        {
+            //Code for Tile at position in tilemap
+        }
+        
+        
         return false;
     }
     
