@@ -16,7 +16,7 @@ MonoImporter:
   - B_King: {fileID: 11400000, guid: 0a90383b7d6387943885e201d91528d6, type: 2}
   - B_Rook: {fileID: 11400000, guid: d321e6e646602294fb7b70bf8360284f, type: 2}
   - B_Pawn: {fileID: 11400000, guid: b1147ad069b24ba4795ddd13a16fa806, type: 2}
-  - Empty: {instanceID: 0}
+  - Empty: {fileID: 11400000, guid: c877d34bd7dd7184c8bbcc061f353a33, type: 2}
   - tilemap: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

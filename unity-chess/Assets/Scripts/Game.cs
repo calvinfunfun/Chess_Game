@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-
+    private Vector3Int _selection1;
+    private Vector3Int _selection2;
     private Board _board;
     private Piece[,] _state;
     
@@ -20,8 +22,32 @@ public class Game : MonoBehaviour
     {
         _board = GetComponentInChildren<Board>();
     }
+    
     // Update is called once per frame
+    void Update()
+    {
+        Vector2 mouse = new Vector2(Input.GetAxis("Mouse X"),Input.GetAxis("Mouse Y"));
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (_selection1 != null)
+            {
+                //Code for Tilemap at mouse position becoming selection1
+            } else if (_selection2 != null)
+            {
+                //Code for Tilemap at mouse position becoming selection2
+            }
+            else
+            {
+                if (Piece.Type == "King")
+                {
+                    IsInCheck(Piece.Type.King, _selection2);
+                }
+            }
+        }
+        
+    }
+    
     //Sets the properties of each piece(type, position, isWhite, hasMoved)
     private void GeneratePieces()
     {
