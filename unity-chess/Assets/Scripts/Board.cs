@@ -19,13 +19,11 @@ public class Board : MonoBehaviour
     public Tile B_Rook;
     public Tile B_Pawn;
     public Tile Empty;
-    public Tilemap pieceMap;
-    public Tilemap highlightMap;
+    public Tilemap tilemap;
     
     //Sets the TileMap Object "Board" to the variable tilemap
     private void GetMap(){
-        pieceMap = GetComponent<Tilemap>();
-        highlightMap = GetComponent<Tilemap>();
+        tilemap = GetComponent<Tilemap>();
     }
  
     //Creates the board
@@ -34,8 +32,8 @@ public class Board : MonoBehaviour
         for (var x = 0; x < 8; x++)
         {
 
-            pieceMap.SetTile(new Vector3Int(x, 6, -1), B_Pawn);
-            pieceMap.SetTile(new Vector3Int(x, 1, -1), W_Pawn);
+            tilemap.SetTile(new Vector3Int(x, 6, -1), B_Pawn);
+            tilemap.SetTile(new Vector3Int(x, 1, -1), W_Pawn);
 
             for (var y = 0; y < 8; y++) {
                 if (y == 7)
@@ -43,19 +41,19 @@ public class Board : MonoBehaviour
                     switch (x) 
                     {
                         case 0 or 7:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Rook);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Rook);
                             break;
                         case 1 or 6:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Knight);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Knight);
                             break;
                         case 2 or 5:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Bishop);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Bishop);
                             break;
                         case 3:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Queen);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_Queen);
                             break;
                         case 4:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_King);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), B_King);
                             break;
                     }
                 }else if (y == 0)
@@ -63,19 +61,19 @@ public class Board : MonoBehaviour
                     switch (x)
                     {
                         case 0 or 7:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Rook);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Rook);
                             break;
                         case 1 or 6:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Knight);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Knight);
                             break;
                         case 2 or 5:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Bishop);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Bishop);
                             break;
                         case 3:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Queen);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_Queen);
                             break;
                         case 4:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_King);
+                            tilemap.SetTile(new Vector3Int(x, y, -1), W_King);
                             break;
                     }
                 }
