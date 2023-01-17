@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakePresetLoader">{
-  &quot;useNewFormat&quot;: true
-}</component>
-  <component name="CMakeSettings">
-    <configurations>
-      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
-    </configurations>
-  </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="e150c5d7-5f8d-4161-bc43-4483b7772792" name="Changes" comment="" />
-=======
-    <list default="true" id="e150c5d7-5f8d-4161-bc43-4483b7772792" name="Changes" comment="">
+    <list default="true" id="435cbbf8-69be-41c6-ba75-ada9e58ca7b2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.unity-chess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.unity-chess/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,10 +27,7 @@
     &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -99,7 +79,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e150c5d7-5f8d-4161-bc43-4483b7772792" name="Changes" comment="" />
+      <changelist id="435cbbf8-69be-41c6-ba75-ada9e58ca7b2" name="Changes" comment="" />
       <created>1673286062007</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -111,17 +91,9 @@
       <workItem from="1673459516225" duration="3436000" />
       <workItem from="1673545910825" duration="2725000" />
       <workItem from="1673635061829" duration="14634000" />
-<<<<<<< Updated upstream
       <workItem from="1673715237125" duration="10000" />
-<<<<<<< HEAD
       <workItem from="1673815884366" duration="2759000" />
-=======
-      <workItem from="1673655578731" duration="16000" />
-      <workItem from="1673802696236" duration="13000" />
-      <workItem from="1673803793178" duration="1529000" />
->>>>>>> Stashed changes
-=======
->>>>>>> parent of 13027e9 (Some Code Expansion)
+      <workItem from="1673900097155" duration="6747000" />
     </task>
     <servers />
   </component>
