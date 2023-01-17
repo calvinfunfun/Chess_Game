@@ -1,8 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour{
+    
+    public Tile W_Knight;
+    public Tile W_Bishop;
+    public Tile W_Queen;
+    public Tile W_King;
+    public Tile W_Rook;
+    public Tile W_Pawn;
+    public Tile B_Knight;
+    public Tile B_Bishop;
+    public Tile B_Queen;
+    public Tile B_King;
+    public Tile B_Rook;
+    public Tile B_Pawn;
+    public Tile Empty;
     
     private Board _board;
     private Piece[,] _state;
@@ -11,6 +27,84 @@ public class Game : MonoBehaviour{
     private void Start()
     {
         _board.NewGame();
+    }
+    
+    private Vector3Int _reset = new Vector3Int(0, 0, 0);
+    private Vector3Int _selection1, _selection2 = new Vector3Int(0, 0, 0);
+    private Piece piece;
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (_selection1 == _reset)
+            {
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                _selection1 = _board.pieceMap.WorldToCell(worldPosition);
+                piece = GetPiece(_selection1);
+            } 
+            else
+            {
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                _selection2 = _board.pieceMap.WorldToCell(worldPosition);
+                
+                //Convert to Switch Case for each piece type
+                if (piece.IsWhite)
+                {
+                    
+                    switch(piece.type)
+                    {
+                        case Piece.Type.Rook:
+                            _board.pieceMap.SetTile(_selection2, W_Rook);
+                            break;
+                        case Piece.Type.Pawn:
+                            _board.pieceMap.SetTile(_selection2, W_Pawn);
+                            break;
+                        case Piece.Type.Knight:
+                            _board.pieceMap.SetTile(_selection2, W_Knight);
+                            break;
+                        case Piece.Type.Bishop:
+                            _board.pieceMap.SetTile(_selection2, W_Bishop);
+                            break;
+                        case Piece.Type.Queen:
+                            _board.pieceMap.SetTile(_selection2, W_Queen);
+                            break;
+                        case Piece.Type.King:
+                            _board.pieceMap.SetTile(_selection2, W_King);
+                            break;
+                    }
+                    
+                }
+                else
+                {
+                    switch(piece.type)
+                    {
+                        case Piece.Type.Rook:
+                            _board.pieceMap.SetTile(_selection2, B_Rook);
+                            break;
+                        case Piece.Type.Pawn:
+                            _board.pieceMap.SetTile(_selection2, B_Pawn);
+                            break;
+                        case Piece.Type.Knight:
+                            _board.pieceMap.SetTile(_selection2, B_Knight);
+                            break;
+                        case Piece.Type.Bishop:
+                            _board.pieceMap.SetTile(_selection2, B_Bishop);
+                            break;
+                        case Piece.Type.Queen:
+                            _board.pieceMap.SetTile(_selection2, B_Queen);
+                            break;
+                        case Piece.Type.King:
+                            _board.pieceMap.SetTile(_selection2, B_King);
+                            break;
+                    }
+                }
+
+                _selection1 = _reset;
+                _selection2 = _reset;
+                piece = new Piece();
+            }
+        }
     }
 
     private void Awake()

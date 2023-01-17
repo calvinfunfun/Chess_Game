@@ -181,6 +181,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5662d6318da182543a8c0aa06e787236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  W_Knight: {fileID: 11400000, guid: f13707ca5f22c9946876258f848ab6f1, type: 2}
+  W_Bishop: {fileID: 11400000, guid: f15c8606e8316ab4e8a2707363bf378e, type: 2}
+  W_Queen: {fileID: 11400000, guid: 239608f08d80af545a1f96d615d4e97c, type: 2}
+  W_King: {fileID: 11400000, guid: a0bb3ac489aaadb4cb5f9b309a57b7aa, type: 2}
+  W_Rook: {fileID: 11400000, guid: a2dd791cfc18424459bfdc8162a75d29, type: 2}
+  W_Pawn: {fileID: 11400000, guid: e1371d3c436451942a1da6afaeb0fbde, type: 2}
+  B_Knight: {fileID: 11400000, guid: 1e95b8577c5f3724eb8a8e6391c1e2ed, type: 2}
+  B_Bishop: {fileID: 11400000, guid: 48f63cf4d0db51b41893db0c5585438b, type: 2}
+  B_Queen: {fileID: 11400000, guid: 93867756ebef2c64e9d13ff1eca9f28d, type: 2}
+  B_King: {fileID: 11400000, guid: 0a90383b7d6387943885e201d91528d6, type: 2}
+  B_Rook: {fileID: 11400000, guid: d321e6e646602294fb7b70bf8360284f, type: 2}
+  B_Pawn: {fileID: 11400000, guid: b1147ad069b24ba4795ddd13a16fa806, type: 2}
+  Empty: {fileID: 11400000, guid: c877d34bd7dd7184c8bbcc061f353a33, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,4 +1194,5 @@ MonoBehaviour:
   B_Rook: {fileID: 11400000, guid: d321e6e646602294fb7b70bf8360284f, type: 2}
   B_Pawn: {fileID: 11400000, guid: b1147ad069b24ba4795ddd13a16fa806, type: 2}
   Empty: {fileID: 11400000, guid: c877d34bd7dd7184c8bbcc061f353a33, type: 2}
-  tilemap: {fileID: 1054705961}
+  pieceMap: {fileID: 1054705961}
+  highlightMap: {fileID: 1054705961}
