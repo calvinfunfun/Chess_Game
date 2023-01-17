@@ -1,110 +1,46 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour{
-    
-    public Tile W_Knight;
-    public Tile W_Bishop;
-    public Tile W_Queen;
-    public Tile W_King;
-    public Tile W_Rook;
-    public Tile W_Pawn;
-    public Tile B_Knight;
-    public Tile B_Bishop;
-    public Tile B_Queen;
-    public Tile B_King;
-    public Tile B_Rook;
-    public Tile B_Pawn;
-    public Tile Empty;
     
     private Board _board;
     private Piece[,] _state;
     
     // Start is called before the first frame update
-    private void Start()
+    public void Start()
     {
         _board.NewGame();
+        GenerateNewPieces();
     }
     
-    private Vector3Int _reset = new Vector3Int(0, 0, 0);
-    private Vector3Int _selection1, _selection2 = new Vector3Int(0, 0, 0);
-    private Piece piece;
+    // private Vector3Int _reset = new Vector3Int(0, 0, 0);
+    // private Vector3Int _selection1, _selection2 = new Vector3Int(0, 0, 0);
+    //
+    // void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(1))
+    //     {
+    //         if (_selection1 == _reset)
+    //         {
+    //             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //             _selection1 = _board.pieceMap.WorldToCell(worldPosition);
+    //             Piece piece = GetPiece(_selection1);
+    //             Piece.Type temp = GetPiece(_selection1).type;
+    //         } 
+    //         else
+    //         {
+    //             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //             _selection2 = _board.pieceMap.WorldToCell(worldPosition);
+    //             _selection1 = _reset;
+    //             _selection2 = _reset;
+    //             Piece piece  = new Piece();
+    //         }
+    //     }
+    // }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (_selection1 == _reset)
-            {
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                _selection1 = _board.pieceMap.WorldToCell(worldPosition);
-                piece = GetPiece(_selection1);
-            } 
-            else
-            {
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                _selection2 = _board.pieceMap.WorldToCell(worldPosition);
-                
-                //Convert to Switch Case for each piece type
-                if (piece.IsWhite)
-                {
-                    
-                    switch(piece.type)
-                    {
-                        case Piece.Type.Rook:
-                            _board.pieceMap.SetTile(_selection2, W_Rook);
-                            break;
-                        case Piece.Type.Pawn:
-                            _board.pieceMap.SetTile(_selection2, W_Pawn);
-                            break;
-                        case Piece.Type.Knight:
-                            _board.pieceMap.SetTile(_selection2, W_Knight);
-                            break;
-                        case Piece.Type.Bishop:
-                            _board.pieceMap.SetTile(_selection2, W_Bishop);
-                            break;
-                        case Piece.Type.Queen:
-                            _board.pieceMap.SetTile(_selection2, W_Queen);
-                            break;
-                        case Piece.Type.King:
-                            _board.pieceMap.SetTile(_selection2, W_King);
-                            break;
-                    }
-                    
-                }
-                else
-                {
-                    switch(piece.type)
-                    {
-                        case Piece.Type.Rook:
-                            _board.pieceMap.SetTile(_selection2, B_Rook);
-                            break;
-                        case Piece.Type.Pawn:
-                            _board.pieceMap.SetTile(_selection2, B_Pawn);
-                            break;
-                        case Piece.Type.Knight:
-                            _board.pieceMap.SetTile(_selection2, B_Knight);
-                            break;
-                        case Piece.Type.Bishop:
-                            _board.pieceMap.SetTile(_selection2, B_Bishop);
-                            break;
-                        case Piece.Type.Queen:
-                            _board.pieceMap.SetTile(_selection2, B_Queen);
-                            break;
-                        case Piece.Type.King:
-                            _board.pieceMap.SetTile(_selection2, B_King);
-                            break;
-                    }
-                }
-
-                _selection1 = _reset;
-                _selection2 = _reset;
-                piece = new Piece();
-            }
-        }
+        
     }
 
     private void Awake()
@@ -113,7 +49,7 @@ public class Game : MonoBehaviour{
     }
 
     //Sets the properties of each piece(type, position, isWhite, hasMoved) at the beginning of the game.
-    private void NewPieces()
+    private void GenerateNewPieces()
     {
         for (var x = 0; x < 8; x++)
         {
@@ -122,7 +58,7 @@ public class Game : MonoBehaviour{
                 switch (y)
                 {
                     case 7:
-                        
+
                         switch (x)
                         {
                             case 0 or 7:
@@ -137,7 +73,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 1 or 6:
                             {
                                 var piece = new Piece
@@ -150,7 +86,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 2 or 5:
                             {
                                 var piece = new Piece
@@ -163,7 +99,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 3:
                             {
                                 var piece = new Piece
@@ -176,7 +112,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 4:
                             {
                                 var piece = new Piece
@@ -189,13 +125,13 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                         }
 
                         break;
-                    
+
                     case 0:
-                        
+
                         switch (x)
                         {
                             case 0 or 7:
@@ -210,7 +146,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 1 or 6:
                             {
                                 var piece = new Piece
@@ -223,7 +159,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 2 or 5:
                             {
                                 var piece = new Piece
@@ -236,7 +172,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 3:
                             {
                                 var piece = new Piece
@@ -249,7 +185,7 @@ public class Game : MonoBehaviour{
                                 _state[x, y] = piece;
                                 break;
                             }
-                            
+
                             case 4:
                             {
                                 var piece = new Piece
@@ -263,6 +199,7 @@ public class Game : MonoBehaviour{
                                 break;
                             }
                         }
+
                         break;
 
                     case 6:
@@ -291,7 +228,7 @@ public class Game : MonoBehaviour{
                         _state[x, y] = piece;
                         break;
                     }
-                    
+
                     default:
                     {
                         var piece = new Piece
@@ -307,46 +244,67 @@ public class Game : MonoBehaviour{
             }
         }
     }
-
+    
     //Gets all the possible moves of each piece 
-    public List<Vector3Int> GetPieceMoves(Piece piece)
+    //Needs Pawn Promotion. Last special Move
+    //Fix up Castling through check and into check
+    private void GetPieceMoves(Piece piece)
     {
 
         switch (piece.type)
         {
+            //Regular Movement
             case Piece.Type.Pawn:
             {
-                if (piece.IsWhite)
+                var dir = (piece.IsWhite) ? 1 : -1;
+                if (!IsOccupied(piece.Position.x, piece.Position.y + dir))
                 {
-                    if (!piece.HasMoved && !IsOccupied(piece.Position.x, piece.Position.y + 2))
+                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, piece.Position.y + dir, -1), false);
+                    if (!IsOccupied(piece.Position.x, piece.Position.y + (dir * 2)) && !piece.HasMoved)
                     {
-                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, piece.Position.y + 2, -1));
-                    }
-
-                    if (!IsOccupied(piece.Position.x, piece.Position.y + 1))
-                    {
-                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, piece.Position.y + 1, -1));
-                    }
-                }
-                else
-                {
-                    if (!piece.HasMoved && !IsOccupied(piece.Position.x, piece.Position.y - 2))
-                    {
-                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, piece.Position.y - 2, -1));
-                    }
-
-                    if (!IsOccupied(piece.Position.x, piece.Position.y - 1))
-                    {
-                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, piece.Position.y - 1, -1));
+                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, piece.Position.y + (dir * 2), -1), false);
                     }
                 }
                 
+                if (piece.Position.x != 7)
+                {
+                    //Capturing of a piece
+                    if (_state[piece.Position.x - 1, piece.Position.y + dir].IsEmpty &&
+                        _state[piece.Position.x - 1, piece.Position.y + dir].IsWhite != piece.IsWhite)
+                    {
+                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x - 1, piece.Position.y + dir, -1), true);
+                    }
+                    //En Passant 
+                    if (Convert.ToInt32(!piece.IsWhite) * 7 + (piece.Position.y * dir) == Convert.ToInt32(!piece.IsWhite) * 7 + (4 * dir)
+                        && _state[piece.Position.x - 1, piece.Position.y].type == Piece.Type.Pawn
+                        && _state[piece.Position.x - 1, piece.Position.y].DoubleSpace)
+                    {
+                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x - 1, piece.Position.y + dir, -1), true);
+                    }
+                }
+
+                if (piece.Position.x != 0)
+                {
+                    //Capturing of a piece
+                    if (_state[piece.Position.x + 1, piece.Position.y + dir].IsEmpty &&
+                        _state[piece.Position.x + 1, piece.Position.y + dir].IsWhite != piece.IsWhite)
+                    {
+                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x + 1, piece.Position.y + dir, -1), true);
+                    }
+                    //En Passant
+                    if (Convert.ToInt32(!piece.IsWhite) * 7 + (piece.Position.y * dir) == Convert.ToInt32(!piece.IsWhite) * 7 + (4 * dir)
+                        && _state[piece.Position.x + 1, piece.Position.y].type == Piece.Type.Pawn
+                        && _state[piece.Position.x + 1, piece.Position.y].DoubleSpace)
+                    {
+                        piece.PossibleMoves.Add(new Vector3Int(piece.Position.x + 1, piece.Position.y + dir, -1), true);
+                    }
+                }
+
                 
-                //Need to check if square is occupied
+                
                 break;
             }
-
-
+            
             case Piece.Type.Knight:
             {
                 //Need to check if square is occupied
@@ -357,10 +315,9 @@ public class Game : MonoBehaviour{
                     for (var y = 0; y < moveSquares.Length; y++)
                     {
                         if (Math.Abs(x) != Math.Abs(y) && !IsOutOfBounds(piece.Position.x + x, piece.Position.y + y) && 
-                            !IsOccupied(piece.Position.x + x, piece.Position.y + y) && 
-                            !piece.PossibleMoves.Contains(new Vector3Int(x, y, -1)))
+                            !IsOccupied(piece.Position.x + x, piece.Position.y + y))
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
                     }
                 }
@@ -380,12 +337,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 //Check upper right diagonal
@@ -398,12 +355,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 //Check lower left diagonal
@@ -416,12 +373,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 //Check upper left diagonal
@@ -434,12 +391,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 break;
@@ -454,12 +411,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[i, piece.Position.y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                 }
 
                 //Horizontal Left Movement
@@ -469,12 +426,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[i, piece.Position.y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                 }
                 
                 //Vertical Upper Movement
@@ -484,12 +441,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[piece.Position.x, i].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                 }
 
                 //Vertical Lower Movement
@@ -499,12 +456,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[piece.Position.x, i].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                 }
                 break;
             }
@@ -518,12 +475,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[i, piece.Position.y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                 }
 
                 //Horizontal Left Movement
@@ -533,12 +490,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[i, piece.Position.y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(i, piece.Position.y, -1), true);
                 }
                 
                 //Vertical Upper Movement
@@ -548,12 +505,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[piece.Position.x, i].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                 }
 
                 //Vertical Lower Movement
@@ -563,12 +520,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[piece.Position.x, i].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(piece.Position.x, i, -1), true);
                 }
                 
                 //Check lower right diagonal
@@ -581,12 +538,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 //Check upper right diagonal
@@ -599,12 +556,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 //Check lower left diagonal
@@ -617,12 +574,12 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 
                 //Check upper left diagonal
@@ -635,32 +592,47 @@ public class Game : MonoBehaviour{
                     {
                         if (_state[x, y].IsWhite != piece.IsWhite)
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                         }
 
                         break;
                     }
-                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1));
+                    piece.PossibleMoves.Add(new Vector3Int(x, y, -1), true);
                 }
                 break;
             }
 
+            //Needs to account for threatened squares when castling and moving
             case Piece.Type.King:
             {
-                //Account for castling and check if occupied
+                //Regular King Moves
                 for (var x = -1; x <= 1; x++)
                 {
                     for (var y = -1; y <= 1; y++)
                     {
                         if (x != 0 && y != 0 && !IsOutOfBounds(x, y))
                         {
-                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x + x, piece.Position.y + y, -1));
+                            piece.PossibleMoves.Add(new Vector3Int(piece.Position.x + x, piece.Position.y + y, -1), true);
                         }
                     }
                 }
+                //Castling Queen side
+                if (!piece.HasMoved && !_state[0, Convert.ToInt32(!piece.IsWhite) * 7].HasMoved && piece.Position.x == 4 
+                    && _state[1, Convert.ToInt32(!piece.IsWhite) * 7].IsEmpty 
+                    && _state[2, Convert.ToInt32(!piece.IsWhite) * 7].IsEmpty 
+                    && _state[3, Convert.ToInt32(!piece.IsWhite) * 7].IsEmpty)
+                {
+                    piece.PossibleMoves.Add(new Vector3Int(2, Convert.ToInt32(!piece.IsWhite) * 7, -1), false);
+                }
+                //Castling King side
+                if (!piece.HasMoved && !_state[0, Convert.ToInt32(!piece.IsWhite) * 7].HasMoved && piece.Position.x == 4 
+                    && _state[5, Convert.ToInt32(!piece.IsWhite) * 7].IsEmpty 
+                    && _state[6, Convert.ToInt32(!piece.IsWhite) * 7].IsEmpty)
+                {
+                    piece.PossibleMoves.Add(new Vector3Int(6, Convert.ToInt32(!piece.IsWhite) * 7, -1), false);
+                }
                 break;
             }
-                
             
             case Piece.Type.Empty:
                 break;
@@ -668,17 +640,105 @@ public class Game : MonoBehaviour{
             default:
                 throw new ArgumentOutOfRangeException();
         }
-
-        return piece.PossibleMoves;
     }
 
+    //Moves the piece to the new square(newPos)
+    public void MovePiece(Piece piece, Vector3Int newPos)
+    {
+        var temp = new Vector3Int(piece.Position.x, piece.Position.y, -1);
+        _state[newPos.x, newPos.y] = new Piece
+        {
+            Position = new Vector3Int(newPos.x, newPos.y, -1),
+            type = piece.type,
+            IsEmpty = false,
+            IsWhite = piece.IsWhite,
+            HasMoved = true
+        };
+        
+        _state[temp.x, temp.y] = new Piece
+        {
+            Position = new Vector3Int(temp.x, temp.y, -1),
+            type = Piece.Type.Empty,
+            IsEmpty = true
+        };
+        //Check for Double Move Pawns
+        if (_state[newPos.x, newPos.y].type == Piece.Type.Pawn && Math.Abs(piece.Position.y - newPos.y) == 2)
+        {
+            _state[newPos.x, newPos.y].DoubleSpace = true;
+            if (!IsOutOfBounds(newPos.x + 1, newPos.y))
+            {
+                GetPieceMoves(_state[newPos.x + 1, newPos.y]);
+            }
+            if (!IsOutOfBounds(newPos.x - 1, newPos.y))
+            {
+                GetPieceMoves(_state[newPos.x - 1, newPos.y]);
+            }
+        }
+        //Check for castling
+        if (_state[newPos.x, newPos.y].type == Piece.Type.King && Math.Abs(piece.Position.x - newPos.x) == 2)
+        {
+            if (piece.Position.x > newPos.x)
+            {
+                CastleQueenRook(piece);
+            }
+            else
+            {
+                CastleKingRook(piece);
+            }
+        }
+        
+        GetPieceMoves(_state[newPos.x, newPos.y]);
+        _board.UpdateBoard(_state);
+    }
+
+    //Castles King side Rook with King
+    private void CastleKingRook(Piece piece)
+    {
+        var temp = _state[0, Convert.ToInt32(!piece.IsWhite) * 7].Position;
+        _state[5, Convert.ToInt32(!piece.IsWhite) * 7] = new Piece
+        {
+            Position = new Vector3Int(5, Convert.ToInt32(!piece.IsWhite) * 7, -1),
+            type = piece.type,
+            IsEmpty = false,
+            IsWhite = piece.IsWhite,
+            HasMoved = true
+        };
+        
+        _state[temp.x, temp.y] = new Piece
+        {
+            Position = new Vector3Int(temp.x, temp.y, -1),
+            type = Piece.Type.Empty,
+            IsEmpty = true
+        };
+    }
+
+    //Castles Queen side Rook with King
+    private void CastleQueenRook(Piece piece)
+    {
+        var temp = _state[0, Convert.ToInt32(!piece.IsWhite) * 7].Position;
+        _state[3, Convert.ToInt32(!piece.IsWhite) * 7] = new Piece
+        {
+            Position = new Vector3Int(3, Convert.ToInt32(!piece.IsWhite) * 7, -1),
+            type = piece.type,
+            IsEmpty = false,
+            IsWhite = piece.IsWhite,
+            HasMoved = true
+        };
+        
+        _state[temp.x, temp.y] = new Piece
+        {
+            Position = new Vector3Int(temp.x, temp.y, -1),
+            type = Piece.Type.Empty,
+            IsEmpty = true
+        };
+    }
     public Piece GetPiece(Vector3Int pos)
     {
         return _state[pos.x, pos.y];
     }
-    //Checks whether a piece can capture an opponent's piece at that position
+    //Checks whether the king can capture an opponent's piece at that position
     //for opponent pieces
-    private static bool IsCapturable()
+    private bool IsCapturable()
     {
         return false;
     }
@@ -701,14 +761,36 @@ public class Game : MonoBehaviour{
         return Piece.Type.Empty;
     }
 
-    public bool CanCastleKingSide()
+    public Vector3Int WhiteKingPosition()
     {
-        return false;
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                if (_state[x, y].IsWhite && _state[x, y].type == Piece.Type.King)
+                {
+                    return _state[x, y].Position;
+                }
+            }
+        }
+
+        return new Vector3Int(0, 0, 0);
     }
 
-    public bool CanCastleQueenSide()
+    public Vector3Int BlackKingPosition()
     {
-        return false;
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                if (!_state[x, y].IsWhite && _state[x, y].type == Piece.Type.King)
+                {
+                    return _state[x, y].Position;
+                }
+            }
+        }
+
+        return new Vector3Int(0, 0, 0);
     }
 
     public bool IsCheck()
@@ -727,10 +809,4 @@ public class Game : MonoBehaviour{
     {
         return false;
     }
-    public bool CanEnPassant(/* needs parameters */)
-    {
-        return false;
-    }
-
-    
 }

@@ -18,7 +18,7 @@ public class Board : MonoBehaviour
     public Tile B_King;
     public Tile B_Rook;
     public Tile B_Pawn;
-    public Tile Empty;
+    public Tile empty;
     public Tilemap pieceMap;
     public Tilemap highlightMap;
     
@@ -58,7 +58,8 @@ public class Board : MonoBehaviour
                             pieceMap.SetTile(new Vector3Int(x, y, -1), B_King);
                             break;
                     }
-                }else if (y == 0)
+                }
+                else if (y == 0)
                 {
                     switch (x)
                     {
@@ -79,7 +80,107 @@ public class Board : MonoBehaviour
                             break;
                     }
                 }
+                else if (y == 6)
+                {
+                    pieceMap.SetTile(new Vector3Int(x, y, -1), B_Pawn);
+                }
+                else if (y == 1)
+                {
+                    pieceMap.SetTile(new Vector3Int(x, y, -1), W_Pawn);
+                }
+                else
+                {
+                    pieceMap.SetTile(new Vector3Int(x, y, -1), empty);
+                }
             }
+        }
+    }
+
+    public void UpdateBoard(Piece[,] board)
+    {
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                Piece piece = board[x, y];
+                pieceMap.SetTile(piece.Position, GetTile(piece));
+                if (piece.DoubleSpace)
+                {
+                    piece.DoubleSpace = false;
+                }
+            }
+        }
+    }
+
+    public Tile GetTile(Piece piece)
+    {
+        switch (piece.type)
+        {
+            case Piece.Type.Pawn:
+                if (piece.IsWhite)
+                {
+                    return W_Pawn;
+                }
+                else
+                {
+                    return B_Pawn;
+                }
+            
+            case Piece.Type.Knight:
+                if (piece.IsWhite)
+                {
+                    return W_Knight;
+                }
+                else
+                {
+                    return B_Knight;
+                }
+            
+            case Piece.Type.Bishop:
+                if (piece.IsWhite)
+                {
+                    return W_Bishop;
+                }
+                else
+                {
+                    return B_Bishop;
+                }
+            
+            case Piece.Type.Rook:
+                if (piece.IsWhite)
+                {
+                    return W_Rook;
+                }
+                else
+                {
+                    return B_Rook;
+                }
+            
+            case Piece.Type.Queen:
+                if (piece.IsWhite)
+                {
+                    return W_Queen;
+                }
+                else
+                {
+                    return B_Queen;
+                }
+            
+            case Piece.Type.King:
+                if (piece.IsWhite)
+                {
+                    return W_King;
+                }
+                else
+                {
+                    return B_King;
+                }
+            
+            case Piece.Type.Empty:
+                return empty;
+            
+            default:
+                return null;
         }
     }
 }
