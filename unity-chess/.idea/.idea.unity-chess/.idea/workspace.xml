@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e150c5d7-5f8d-4161-bc43-4483b7772792" name="Changes" comment="" />
+    <list default="true" id="435cbbf8-69be-41c6-ba75-ada9e58ca7b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.unity-chess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.unity-chess/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +79,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e150c5d7-5f8d-4161-bc43-4483b7772792" name="Changes" comment="" />
+      <changelist id="435cbbf8-69be-41c6-ba75-ada9e58ca7b2" name="Changes" comment="" />
       <created>1673286062007</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -88,6 +93,7 @@
       <workItem from="1673635061829" duration="14634000" />
       <workItem from="1673715237125" duration="10000" />
       <workItem from="1673815884366" duration="2759000" />
+      <workItem from="1673900097155" duration="6747000" />
     </task>
     <servers />
   </component>
