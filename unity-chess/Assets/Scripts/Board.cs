@@ -1,96 +1,220 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Board : MonoBehaviour
 {
     //Piece Type
-    public Tile W_Knight;
-    public Tile W_Bishop;
-    public Tile W_Queen;
-    public Tile W_King;
-    public Tile W_Rook;
-    public Tile W_Pawn;
-    public Tile B_Knight;
-    public Tile B_Bishop;
-    public Tile B_Queen;
-    public Tile B_King;
-    public Tile B_Rook;
-    public Tile B_Pawn;
+    public Tile whiteKnight;
+    public Tile whiteBishop;
+    public Tile whiteQueen;
+    public Tile whiteKing;
+    public Tile whiteRook;
+    public Tile whitePawn;
+    public Tile blackKnight;
+    public Tile blackBishop;
+    public Tile blackQueen;
+    public Tile blackKing;
+    public Tile blackRook;
+    public Tile blackPawn;
     public Tile empty;
     public Tilemap pieceMap;
     public Tilemap highlightMap;
     
     //Sets the pieceMap Object "Board" to the variable pieceMap
-    private void GetMap(){
+    private void Awake(){
         pieceMap = GetComponent<Tilemap>();
-        highlightMap = GetComponent<Tilemap>();
     }
  
     //Creates the board
-    public void NewGame()
+    public void NewGame(Piece[,] board)
     {
         for (var x = 0; x < 8; x++)
         {
+            for (var y = 0; y < 8; y++)
+            {
+                switch (y)
+                {
+                    case 7:
+                        switch (x) 
+                        {
+                            case 0 or 7:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Rook,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = false
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, blackRook);
+                                break;
+                            }
 
-            pieceMap.SetTile(new Vector3Int(x, 6, -1), B_Pawn);
-            pieceMap.SetTile(new Vector3Int(x, 1, -1), W_Pawn);
+                            case 1 or 6:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Knight,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = false
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, blackKnight);
+                                break;
+                            }
+                                
+                            case 2 or 5:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Bishop,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = false
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, blackBishop);
+                                break;
+                            }
+                            
+                            case 3:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Queen,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = false
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, blackQueen);
+                                break;
+                            }
+                            case 4:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.King,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = false
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, blackKing);
+                                break;
+                            }
+                        }
 
-            for (var y = 0; y < 8; y++) {
-                if (y == 7)
-                {
-                    switch (x) 
+                        break;
+                    
+                    case 0:
+                        switch (x)
+                        {
+                            case 0 or 7:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Rook,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = true
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, whiteRook);
+                                break;
+                            }
+
+                            case 1 or 6:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Knight,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = true
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, whiteKnight);
+                                break;
+                            }
+                                
+                            case 2 or 5:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Bishop,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = true
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, whiteBishop);
+                                break;
+                            }
+                            
+                            case 3:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.Queen,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = true
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, whiteQueen);
+                                break;
+                            }
+                            case 4:
+                            {
+                                var piece = new Piece
+                                {
+                                    type = Piece.Type.King,
+                                    Position = new Vector3Int(x, y, -1),
+                                    IsEmpty = false,
+                                    IsWhite = true
+                                };
+                                                                
+                                pieceMap.SetTile(piece.Position, whiteKing);
+                                break;
+                            }
+                        }
+
+                        break;
+
+                    case 6:
                     {
-                        case 0 or 7:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Rook);
-                            break;
-                        case 1 or 6:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Knight);
-                            break;
-                        case 2 or 5:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Bishop);
-                            break;
-                        case 3:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_Queen);
-                            break;
-                        case 4:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), B_King);
-                            break;
+                        var piece = new Piece
+                        { 
+                            Position = new Vector3Int(x, y, -1),
+                            IsWhite = false,
+                            type = Piece.Type.Pawn,
+                            IsEmpty = false
+                        };
+                        
+                        pieceMap.SetTile(piece.Position, blackPawn);
+                        break;
                     }
-                }
-                else if (y == 0)
-                {
-                    switch (x)
+                        
+                    case 1:
                     {
-                        case 0 or 7:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Rook);
-                            break;
-                        case 1 or 6:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Knight);
-                            break;
-                        case 2 or 5:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Bishop);
-                            break;
-                        case 3:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_Queen);
-                            break;
-                        case 4:
-                            pieceMap.SetTile(new Vector3Int(x, y, -1), W_King);
-                            break;
+                        var piece = new Piece
+                        { 
+                            Position = new Vector3Int(x, y, -1),
+                            IsWhite = true,
+                            type = Piece.Type.Pawn,
+                            IsEmpty = false
+                        };
+                        
+                        pieceMap.SetTile(piece.Position, whitePawn);
+                        break;
                     }
-                }
-                else if (y == 6)
-                {
-                    pieceMap.SetTile(new Vector3Int(x, y, -1), B_Pawn);
-                }
-                else if (y == 1)
-                {
-                    pieceMap.SetTile(new Vector3Int(x, y, -1), W_Pawn);
-                }
-                else
-                {
-                    pieceMap.SetTile(new Vector3Int(x, y, -1), empty);
+                    
+                    default:
+                        pieceMap.SetTile(new Vector3Int(x, y, -1), empty);
+                        break;
                 }
             }
         }
@@ -98,11 +222,11 @@ public class Board : MonoBehaviour
 
     public void UpdateBoard(Piece[,] board)
     {
-        for (int x = 0; x < 8; x++)
+        for (var x = 0; x < 8; x++)
         {
-            for (int y = 0; y < 8; y++)
+            for (var y = 0; y < 8; y++)
             {
-                Piece piece = board[x, y];
+                var piece = board[x, y];
                 pieceMap.SetTile(piece.Position, GetTile(piece));
                 if (piece.DoubleSpace)
                 {
@@ -112,75 +236,18 @@ public class Board : MonoBehaviour
         }
     }
 
-    public Tile GetTile(Piece piece)
+    private Tile GetTile(Piece piece)
     {
-        switch (piece.type)
+        return piece.type switch
         {
-            case Piece.Type.Pawn:
-                if (piece.IsWhite)
-                {
-                    return W_Pawn;
-                }
-                else
-                {
-                    return B_Pawn;
-                }
-            
-            case Piece.Type.Knight:
-                if (piece.IsWhite)
-                {
-                    return W_Knight;
-                }
-                else
-                {
-                    return B_Knight;
-                }
-            
-            case Piece.Type.Bishop:
-                if (piece.IsWhite)
-                {
-                    return W_Bishop;
-                }
-                else
-                {
-                    return B_Bishop;
-                }
-            
-            case Piece.Type.Rook:
-                if (piece.IsWhite)
-                {
-                    return W_Rook;
-                }
-                else
-                {
-                    return B_Rook;
-                }
-            
-            case Piece.Type.Queen:
-                if (piece.IsWhite)
-                {
-                    return W_Queen;
-                }
-                else
-                {
-                    return B_Queen;
-                }
-            
-            case Piece.Type.King:
-                if (piece.IsWhite)
-                {
-                    return W_King;
-                }
-                else
-                {
-                    return B_King;
-                }
-            
-            case Piece.Type.Empty:
-                return empty;
-            
-            default:
-                return null;
-        }
+            Piece.Type.Pawn => piece.IsWhite ? whitePawn : blackPawn,
+            Piece.Type.Knight => piece.IsWhite ? whiteKnight : blackKnight,
+            Piece.Type.Bishop => piece.IsWhite ? whiteBishop : blackBishop,
+            Piece.Type.Rook => piece.IsWhite ? whiteRook : blackRook,
+            Piece.Type.Queen => piece.IsWhite ? whiteQueen : blackQueen,
+            Piece.Type.King => piece.IsWhite ? whiteKing : blackKing,
+            Piece.Type.Empty => empty,
+            _ => null
+        };
     }
 }

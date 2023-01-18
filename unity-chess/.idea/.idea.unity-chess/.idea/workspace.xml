@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="435cbbf8-69be-41c6-ba75-ada9e58ca7b2" name="Changes" comment="" />
+    <list default="true" id="435cbbf8-69be-41c6-ba75-ada9e58ca7b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.unity-chess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.unity-chess/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Board.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Board.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +94,7 @@
       <workItem from="1673715237125" duration="10000" />
       <workItem from="1673815884366" duration="2759000" />
       <workItem from="1673900097155" duration="24318000" />
+      <workItem from="1674012644383" duration="3324000" />
     </task>
     <servers />
   </component>
