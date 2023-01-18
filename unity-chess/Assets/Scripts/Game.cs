@@ -5,41 +5,35 @@ public class Game : MonoBehaviour{
     
     private Board _board;
     private Piece[,] _state;
-    
+    private Camera _camera;
+    private Piece _selectedPiece;
+
     // Start is called before the first frame update
     public void Start()
     {
+        _camera = Camera.main;
         _board.NewGame(_state);
     }
-    
-    // private Vector3Int _reset = new Vector3Int(0, 0, 0);
-    // private Vector3Int _selection1, _selection2 = new Vector3Int(0, 0, 0);
-    //
-    // void Update()
-    // {
-    //     if (Input.GetMouseButtonDown(1))
-    //     {
-    //         if (_selection1 == _reset)
-    //         {
-    //             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //             _selection1 = _board.pieceMap.WorldToCell(worldPosition);
-    //             Piece piece = GetPiece(_selection1);
-    //             Piece.Type temp = GetPiece(_selection1).type;
-    //         } 
-    //         else
-    //         {
-    //             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //             _selection2 = _board.pieceMap.WorldToCell(worldPosition);
-    //             _selection1 = _reset;
-    //             _selection2 = _reset;
-    //             Piece piece  = new Piece();
-    //         }
-    //     }
-    // }
 
     private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Gets the position of the tile
+            var worldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            var squarePos = _board.pieceMap.WorldToCell(worldPosition);
+            var piece = GetPiece(squarePos);
+            if (!piece.IsEmpty)
+            {
+                _selectedPiece = piece;
+            }
+
+            if (!_selectedPiece.IsEmpty && _selectedPiece.Position != squarePos)
+            {
+                MovePiece(_selectedPiece, squarePos);
+                _selectedPiece = new Piece();
+            }
+        }
     }
 
     private void Awake()
@@ -534,10 +528,12 @@ public class Game : MonoBehaviour{
             IsEmpty = true
         };
     }
-    public Piece GetPiece(Vector3Int pos)
+
+    private Piece GetPiece(Vector3Int pos)
     {
-        return _state[pos.x, pos.y];
+        return IsOutOfBounds(pos.x, pos.y) ? _state[pos.x, pos.y] : new Piece();
     }
+    
     //Checks whether the king can capture an opponent's piece at that position
     //for opponent pieces
     private bool IsCapturable()
