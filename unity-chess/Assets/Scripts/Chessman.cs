@@ -270,8 +270,8 @@ public class Chessman : MonoBehaviour
         float y = matrixY;
 
         //Adjust by variable offset
-        x *= 0.66f;
-        y *= 0.66f;
+        x *= 1f;
+        y *= 1f;
 
         //Add constants (pos 0,0)
         x += -2.3f;
